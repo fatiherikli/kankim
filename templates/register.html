@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block extra-head %}
+    <title>Kankilerin Mekanı</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="kolon_4 slogan" style="margin-left:10px;">
+ 
+        {% if registration_form.is_valid %}
+            <h3 style="margin-left:3px; font-size:24px;">Tamamdır</h3>
+            Kancalar diyarına hoş geldiniz. Şimdi giriş yapabilirsiniz...
+        {% else %}
+            <h3 style="margin-left:3px; font-size:24px;">Hemen &uuml;ye olun</h3>
+            <form id="registration_form" action="/register" method="post" style="border-right:1px dashed gray;">
+                {% csrf_token %}
+
+
+                <p>
+                    {{ registration_form.username.label_tag }}
+                    {{ registration_form.username }}
+                    {{ registration_form.username.errors }}
+
+                </p>
+
+                <p>
+                    {{ registration_form.email.label_tag }}
+                    {{ registration_form.email }}
+                    {{ registration_form.email.errors }}
+
+                </p>
+
+                <p>
+                    {{ registration_form.password.label_tag }}
+                    {{ registration_form.password }}
+                    {{ registration_form.password.errors }}
+
+                </p>
+
+
+                <p>
+                    {{ registration_form.first_name.label_tag }}
+                    {{ registration_form.first_name }}
+                    {{ registration_form.first_name.errors }}
+
+                </p>
+
+
+                <p>
+                    {{ registration_form.last_name.label_tag }}
+                    {{ registration_form.last_name }}
+                    {{ registration_form.last_name.errors }}
+
+                </p>
+
+
+
+
+                <p>
+                    <label>Sevdiğiniz Renk</label>
+                    {% for color, label in color_choices %}
+                        <a href="#" onclick="change_color('{{ color }}')" class="renk"
+                           style="background:{{ color }};"></a>
+                    {% endfor %}
+
+                </p>
+
+                <div style="clear:both"></div>
+                <p>
+                    <label>&nbsp;</label>
+                    {{ registration_form.color }}
+                    <input style="margin:0px;" type="image" src="/static/images/devam.png" class="renkduzeni"/>
+                </p>
+            </form>
+
+        {% endif %}
+
+    </div>
+    <div class="kolon_3 slogan" style="margin-left:40px;">
+        <h3>Kankim benim...</h3>
+
+        <p class="spot">Kank.im arkadaşlarınızla iletişim kurabileceğiniz, arkadaşlarınızla bir şeyler
+            paylaşabileceğiniz bir sosyal platformdur. Kankime hemen &uuml;ye olarak sizde kankilerinizi
+            bulabilir,
+            onları listenize ekleyebilirsiniz. </p>
+
+        <h3><br/>
+            Kancalarınla paylaş...
+
+            <div style="margin-top:15px;">
+                <img src="/static/images/kanca-1.png" align="left" class="renkduzeni"/> <img
+                    src="/static/images/kanca-2.png" align="left" class="renkduzeni"/> <img
+                    src="/static/images/kanca-3.png" align="left" class="renkduzeni"/></div>
+        </h3>
+    </div>
+    <div style="clear:both"></div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block top_menu %}
+    {% include 'inc/menu.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="kolon_5"
+         style="margin-left:10px; margin-top:10px; border-right:1px dashed gray; padding-right:10px;  ">
+
+        <p>
+    
+        <h3>kankileriniz</h3>
+        {% if me.friendship_list %}
+
+            <ul>
+             {% for friendship in me.friendship_list %}
+
+                 <li><a href="{{ friendship.from_friend.get_profile.get_absolute_url }}">{{ friendship.from_friend }}</a></li>
+
+             {% endfor %}
+            </ul>
+
+        {% else %}
+
+            henüz hiç kankiniz yok :(
+
+        {% endif %}
+        </p>
+
+
+         {% if me.waiting_friendship_requests %}
+         <p>
+        <h3>kanki olmak istedikleriniz</h3>
+
+             <ul>
+             {% for friendship in me.waiting_friendship_requests %}
+
+                 <li><a href="{{ friendship.to_friend.get_profile.get_absolute_url }}">{{ friendship.to_friend.get_profile }}</a></li>
+
+             {% endfor %}
+            </ul>
+
+             </p>
+
+        {% endif %}
+
+
+
+        
+
+        
+    </div>
+
+    {% include "inc/sidebar.html" %}
+{% endblock %}

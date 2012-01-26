@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block top_menu %}
+    {% include 'inc/menu.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="kolon_8"
+         style="margin-left:10px; margin-top:10px;  padding-right:10px;  ">
+
+        {% if not result %}
+            {{ keyword }} hiç olmadı galiba. yılmak yok devam
+            {% include 'inc/search.html' %}
+
+        {% else %}
+            <p>{{ result.count }} tane buldum</p>
+        {% endif %}
+
+    
+        {% for profile in result %}
+
+            {% if profile in me.dont_add %}
+                ama {{ profile }} zaten senin kankin ya da kankin olacak. <br>
+            {% else %}
+                <br>
+                {{ profile }}
+                <form style="display:inline" method="post" action="/friends/add/{{ profile.username }}">
+                    {% csrf_token %}
+                    <input type="hidden" name="friend" value="{{ profile.id }}">
+                    <input type="submit" value="ekle hemen">
+                </form>
+            {% endif %}
+
+        {% endfor %} <br>
+
+
+
+    </div>
+
+{% endblock %}

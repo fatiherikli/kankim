@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <script type="text/javascript" src="/static/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/static/scripts/kankim.js"></script>
+    <link href="/static/css/stil.css" rel="stylesheet" type="text/css"/>
+    {% block extra-head %}
+        <title>Kankilerin Mekanı</title>
+    {% endblock %}
+    {% if user.is_authenticated %}
+    <style>
+        .renkduzeni { background-color: {{ me.color }}; }
+        h3 { color:{{ me.color }} }
+    </style>
+    {% endif %}
+</head>
+
+<body class="renkduzeni">
+
+    <div class="kankim"><img src="/static/images/orta-ust.png" width="789" height="14"/>
+
+        <div class="icerik" style=" ">
+
+            <div style="border-bottom:1px dashed gray">
+
+                {% block logo %}
+
+
+                <a href="/"><img src="/static/images/kankim.png" class="renkduzeni"
+                                 alt="Kankim - Kankilerin Buluşma Noktası" name="logo" border="0" id="logo"/></a>
+
+                {% endblock %}
+
+                {% block top_menu %}
+                    {% if user.is_anonymous %}
+                    <form action="/login" id="login_form" method="post" class="giris">
+                        {% csrf_token %}
+                        <div class="kolon_1" style="margin-right:10px;">
+                            <h4>Kullanıcı Adı</h4>
+                            {{ login_form.username }}
+
+                        </div>
+                        <div class="kolon_1">
+                            <h4>Şifre</h4>
+                            {{ login_form.password }}
+                            </div>
+                        <div class="kolon_1">
+                            <h4>&nbsp;</h4>
+                            <input type="image" src="/static/images/login.png" style="margin-left:10px; margin-top:-2px;"/>
+                        </div>
+
+                    </form>
+                    {% endif %}
+                {% endblock %}
+
+                <div style="clear:both"></div>
+                <div id="info"></div>
+            </div>
+
+            {% block content %}
+                
+            {% endblock %}
+
+            <div style="clear:both"></div>
+
+        </div>
+
+
+        <a style="position:absolute; display:block; color:#2D2D2D; font-size:11px; border:0px red solid; width:100px; height:20px; font-weight:bold; margin-left:700px; margin-top:19px; color:white;"
+           href="http://www.fatiherikli.com" target="_blank">kank.im social</a>
+        <img src="/static/images/orta-alt-2.png" width="789" alt="kankim"/></div>
+
+
+</body>
+</html> 

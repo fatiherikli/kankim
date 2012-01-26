@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block top_menu %}
+    {% include 'inc/menu.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="kolon_5"
+         style="margin-left:10px; margin-top:10px; border-right:1px dashed gray; padding-right:10px;  ">
+
+
+        <h3 style=" margin-top:0px;">profil resmim</h3>
+
+        <form enctype="multipart/form-data" style="padding:3px;" action="/change-profile-picture/" method="post">
+            {% csrf_token %}
+           <div class="clear"></div>
+
+            {% if me.picture %}
+             aktif olan profil resminizi asagidan degistirebilirsiniz.
+            {% else %}
+            profil resminiz bulunmamaktadir. asagidan hemen ekleyin bir tane. <br>
+            {% endif %}
+
+
+            {% for field in profile_form %}
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" value=" kaydet ... "/>
+        </form>
+
+    </div>
+
+    {% include "inc/sidebar.html" %}
+{% endblock %}

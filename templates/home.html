@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block top_menu %}
+    {% include 'inc/menu.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="kolon_5"
+         style="margin-left:10px; margin-top:10px; border-right:1px dashed gray; padding-right:10px;  ">
+
+
+        {% if friendship_requests %}
+            <h3>Arkadaşlık İstekleri</h3>
+
+            {% for friendship  in friendship_requests %}
+                <ul>
+                    <li>{{ friendship.from_friend }}
+                        <form style="display:inline" method="post" action="/friends/accept/{{ friendship.from_friend.username }}">
+                            {% csrf_token %}
+                            <input type="hidden" name="friendship" value="{{ friendship.id }}">
+                            <input type="submit" value="kabul">
+                        </form>
+
+                        <form style="display:inline" method="post" action="/friends/cancel/{{ friendship.to_friend.username }}">
+                            {% csrf_token %}
+                            <input type="hidden" name="friendship" value="{{ friendship.id }}">
+                            <input type="submit" value="sil">
+                        </form>
+                    </li>
+                </ul>
+            {% endfor %}
+
+        {% endif %}
+
+        <h3 style=" margin-top:0px;">kanki bulmaca !</h3>
+
+        {% include 'inc/search.html' %}
+
+        <h3 style="  margin-top:10px">duvara karşı</h3>
+
+        <form style="padding:3px;">
+            <textarea class="input" style="width:480px; height:40px;"/></textarea> <input type="submit"
+                                                                                          value=" post... "/>
+        </form>
+
+
+        no-posts
+    </div>
+
+    {% include "inc/sidebar.html" %}
+{% endblock %}

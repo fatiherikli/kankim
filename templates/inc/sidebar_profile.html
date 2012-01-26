@@ -1,0 +1,19 @@
+<div class="kolon_2" style="width:240px; margin-left:20px;">
+
+
+    <h3>{{ profile }}</h3>
+
+    <div align="">
+        <a target="_blank" href="{{ MEDIA_URL }}/{{ me.picture.url }}">
+            <img  class="renkduzeni" src="{{ MEDIA_URL }}/{{ me.picture.url_220x220 }}"></a>
+    </div>
+
+    {% if not profile.user in me.dont_add  %}
+    <a class="ufaklink" href="/friends/add/{{ profile.user.username }}">Kanki ol</a>
+    {% endif %}
+
+
+    <div style="clear:both"></div>
+
+
+</div>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block top_menu %}
+    {% include 'inc/menu.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="kolon_5"
+         style="margin-left:10px; margin-top:10px; border-right:1px dashed gray; padding-right:10px;  ">
+
+
+        <h3 style=" margin-top:0px;">profil güncelle </h3>
+
+        <form style="padding:3px;" action="/profile-edit/" method="post">
+            {% csrf_token %}
+            <p>
+                    <label>Sevdiğiniz Renk</label>
+                    {% for color, label in color_choices %}
+                        <a href="#" onclick="change_color('{{ color }}')" class="renk"
+                           style="background:{{ color }};"></a>
+                    {% endfor %}
+
+            </p>
+           <div class="clear"></div>
+            {{ profile_form.as_p }}
+
+
+             <input type="submit" value=" kaydediver ... "/>
+        </form>
+
+    </div>
+
+    {% include "inc/sidebar.html" %}
+{% endblock %}

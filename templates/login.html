@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block extra-head %}
+    <title>Kankilerin Mekanı</title>
+{% endblock %}
+
+{% block top_menu %}
+    
+{% endblock %}
+
+{% block content %}
+
+    <div class="kolon_4 slogan" style="margin-left:10px;">
+
+
+        <form method="post" action="/login">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+             <input type="image" src="/static/images/login.png" style="margin-left:10px; margin-top:-2px;"/>
+
+        </form>
+
+
+    </div>
+    <div class="kolon_3 slogan" style="margin-left:40px;">
+        <h3>Kankim benim...</h3>
+
+        <p class="spot">Kank.im arkadaşlarınızla iletişim kurabileceğiniz, arkadaşlarınızla bir şeyler
+            paylaşabileceğiniz bir sosyal platformdur. Kankime hemen &uuml;ye olarak sizde kankilerinizi
+            bulabilir,
+            onları listenize ekleyebilirsiniz. </p>
+
+        <h3><br/>
+            Kancalarınla paylaş...
+
+            <div style="margin-top:15px;">
+                <img src="/static/images/kanca-1.png" align="left" class="renkduzeni"/> <img
+                    src="/static/images/kanca-2.png" align="left" class="renkduzeni"/> <img
+                    src="/static/images/kanca-3.png" align="left" class="renkduzeni"/></div>
+        </h3>
+    </div>
+    <div style="clear:both"></div>
+
+{% endblock %}

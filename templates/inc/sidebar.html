@@ -1,0 +1,21 @@
+<div class="kolon_2" style="width:240px; margin-left:20px;">
+
+
+    <h3>{{ me }}</h3>
+
+    <div align="">
+        {% if me.picture %}
+	<a target="_blank" href="/{{ MEDIA_URL }}/{{ me.picture.url }}">
+           <img  class="renkduzeni" style=" " src="/{{ MEDIA_URL }}/{{ me.picture.url_220x220 }}">
+        </a>
+	{% endif %}
+    </div>
+
+    <a class="ufaklink" href="/profile-edit">Bilgileri D&uuml;zenle</a>
+    <a class="ufaklink" href="/change-profile-picture">Profil Resmini Degistir</a>
+
+
+    <div style="clear:both"></div>
+
+
+</div>
